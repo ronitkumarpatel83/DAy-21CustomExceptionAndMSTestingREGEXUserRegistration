@@ -30,5 +30,27 @@ namespace Day_21UserRegistrationUsingExceptionAndMSTesting
                 return ex.Message;
             }
         }
+        public string LastNameValidation(string LastName)
+        {
+            try
+            {
+                string pattern = "^[A-Z][a-z]{2,}$"; // Creating REGEX pattern
+                if (Regex.IsMatch(LastName, pattern)) //For checking regex are valid or invalid
+                {
+                    Console.WriteLine("The Last name is : " + LastName);
+                    return "Input is valid";
+                }
+                else
+                {
+                    throw new CustomException(CustomException.ExceptionValidation.INVALID_INPUT, "Input is not valid");
+                }
+            }
+            catch (CustomException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return ex.Message;
+            }
+        }
+
     }
 }

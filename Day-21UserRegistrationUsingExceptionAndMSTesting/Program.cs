@@ -16,11 +16,19 @@ namespace Day_21UserRegistrationUsingExceptionAndMSTesting
             //User first name validation
             Firstname:
             Console.WriteLine("\nAtleast 3 character and first character should be Capital letter and rest are small");
-            Console.WriteLine("\nEnter your first name : ");
+            Console.WriteLine("\nEnter your First name : ");
             string firstName = Console.ReadLine(); //storing first name entered by user in variable
             string checkFirstName = validation.FirstNameValidation(firstName); //Calling method to check first name is valid or not with argument
             if (checkFirstName != "Input is valid")//If not valid then ask user to enter first name again
                 goto Firstname;
+            //User last name validation
+            Lastname:
+            Console.WriteLine("\nAtleast 3 character and first character should be Capital letter and rest are small");
+            Console.WriteLine("\nEnter your Last name : ");
+            string LastName = Console.ReadLine(); //storing first name entered by user in variable
+            string checkLastName = validation.LastNameValidation(LastName); //Calling method to check first name is valid or not with argument
+            if (checkFirstName != "Input is valid")//If not valid then ask user to enter first name again
+                goto Lastname;
         }
     }
 }
