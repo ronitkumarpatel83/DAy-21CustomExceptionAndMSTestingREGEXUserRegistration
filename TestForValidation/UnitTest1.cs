@@ -52,5 +52,25 @@ namespace TestForValidation
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+        [TestMethod]
+        //Checking for multiple first name
+        [DataRow("abc@abc@gmail.com", "Input is not valid")]
+        [DataRow("abc..2002@gmail.com", "Input is not valid")]
+        [DataRow("abc@yahoo.com", "Input is valid")]
+        [DataRow("abc@1.com", "Input is valid")]
+        public void EmailValidation(string email, string expected) // Testing for Firstname Validation
+        {
+            try
+            {
+                //Act
+                string actual = validation.EmailValidation(email);
+                //Assert
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException ex) // catch exception if input is not valid or null or empty
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
     }
 }

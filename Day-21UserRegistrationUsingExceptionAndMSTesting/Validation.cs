@@ -51,6 +51,26 @@ namespace Day_21UserRegistrationUsingExceptionAndMSTesting
                 return ex.Message;
             }
         }
-
+        public string EmailValidation(string email)
+        {
+            try
+            {
+                string pattern = "^[0-9a-zA-Z]+[./+_-]{0,1}[0-9a-zA-Z]+[@][a-zA-Z0-9-]+[.][a-zA-Z]{2,}([.][a-zA-Z]{2,}){0,1}$"; // Creating REGEX pattern
+                if (Regex.IsMatch(email, pattern)) //For checking regex are valid or invalid
+                {
+                    Console.WriteLine("My email id : " + email);
+                    return "Input is valid";
+                }
+                else
+                {
+                    throw new CustomException(CustomException.ExceptionValidation.INVALID_INPUT, "Input is not valid");
+                }
+            }
+            catch (CustomException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return ex.Message;
+            }
+        }
     }
 }
