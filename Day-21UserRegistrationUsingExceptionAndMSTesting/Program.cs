@@ -29,13 +29,20 @@ namespace Day_21UserRegistrationUsingExceptionAndMSTesting
             //string checkLastName = validation.LastNameValidation(LastName); //Calling method to check first name is valid or not with argument
             //if (checkLastName != "Input is valid")//If not valid then ask user to enter first name again
             //    goto Lastname;
-            Email:
-            Console.WriteLine("\nWrite your valid Email :");
-            Console.WriteLine("\nEnter your email : ");
-            string email = Console.ReadLine(); //storing first name entered by user in variable
-            string checkEmail = validation.EmailValidation(email); //Calling method to check first name is valid or not with argument
-            if (checkEmail != "Input is valid")//If not valid then ask user to enter first name again
-                goto Email;
+            //Email:
+            //Console.WriteLine("\nWrite your valid Email :");
+            //Console.WriteLine("\nEnter your email : ");
+            //string email = Console.ReadLine(); //storing first name entered by user in variable
+            //string checkEmail = validation.EmailValidation(email); //Calling method to check first name is valid or not with argument
+            //if (checkEmail != "Input is valid")//If not valid then ask user to enter first name again
+            //    goto Email;
+            MobileNumber:
+            Console.WriteLine("\nWrite your valid Number :");
+            Console.WriteLine("\nEnter your Mobile Number : ");
+            string MobileNumber = Console.ReadLine(); //storing first name entered by user in variable
+            string checkmobileNumber = validation.MobileNumberValidation(MobileNumber); //Calling method to check first name is valid or not with argument
+            if (checkmobileNumber != "Input is valid")//If not valid then ask user to enter first name again
+                goto MobileNumber;
         }
     }
 }

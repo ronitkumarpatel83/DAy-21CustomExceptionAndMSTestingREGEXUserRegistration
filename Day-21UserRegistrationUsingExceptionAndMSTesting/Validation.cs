@@ -72,5 +72,26 @@ namespace Day_21UserRegistrationUsingExceptionAndMSTesting
                 return ex.Message;
             }
         }
+        public string MobileNumberValidation(string Number)
+        {
+            try
+            {
+                string pattern = "^[0-9]{1,3}[ ][0-9]{10}$"; // Creating REGEX pattern
+                if (Regex.IsMatch(Number, pattern)) //For checking regex are valid or invalid
+                {
+                    Console.WriteLine("My number id is : " + Number);
+                    return "Input is valid";
+                }
+                else
+                {
+                    throw new CustomException(CustomException.ExceptionValidation.INVALID_INPUT, "Input is not valid");
+                }
+            }
+            catch (CustomException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return ex.Message; 
+            }
+        }
     }
 }
