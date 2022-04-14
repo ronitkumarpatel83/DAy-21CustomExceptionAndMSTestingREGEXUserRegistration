@@ -93,5 +93,27 @@ namespace Day_21UserRegistrationUsingExceptionAndMSTesting
                 return ex.Message; 
             }
         }
+        public string PasswordValidation(string pswd)
+        {
+
+            string pattern = "^((?=.{8,}$)(?=.*[0-9])(?=.*[A-Z])[A-Za-z0-9]{0,30}?[@~!#$%^&+*]{1}[a-zA-Z0-9]{0,30})$"; // Creating REGEX pattern
+            try
+            {
+                if (Regex.IsMatch(pswd, pattern)) //For checking regex are valid or invalid
+                {
+                    Console.WriteLine("My password id is : " + pswd);
+                    return "Input is valid";
+                }
+                else
+                {
+                    throw new CustomException(CustomException.ExceptionValidation.INVALID_INPUT, "Input is not valid");
+                }
+            }
+            catch(CustomException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return ex.Message;
+            }
+        }
     }
 }

@@ -90,5 +90,27 @@ namespace TestForValidation
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+        [TestMethod]
+        //Checking for multiple first name
+        [DataRow("abcdefghi", "Input is not valid")]
+        [DataRow("abcde12344", "Input is not valid")]
+        [DataRow("ABcde123", "Input is not valid")]
+        [DataRow("ABcde@@12344", "Input is not valid")]
+        [DataRow("AbCdEf12@", "Input is valid")]
+        [DataRow("Aabcde@12345", "Input is valid")]
+        public void PasswordValidation(string number, string expected) // Testing for Firstname Validation
+        {
+            try
+            {
+                //Act
+                string actual = validation.PasswordValidation(number);
+                //Assert
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException ex) // catch exception if input is not valid or null or empty
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
     }
 }
