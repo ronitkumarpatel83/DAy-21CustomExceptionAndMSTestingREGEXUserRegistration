@@ -9,14 +9,23 @@ namespace Day_21UserRegistrationUsingExceptionAndMSTesting
 {
     public class Validation
     {
-        public string FirstNameValidation(string FirstName)
+        public string input;
+        public Validation()
+        {
+            Console.WriteLine("Default Constructor");
+        }
+        public Validation(string input) // creating a constructor with one string parameter
+        {
+            this.input = input; // Assigning value to local variable
+        }
+        public string FirstNameValidation()
         {
             try
             {
                 string pattern = "^[A-Z][a-z]{2,}$"; // Creating REGEX pattern
-                if (Regex.IsMatch(FirstName, pattern)) //For checking regex are valid or invalid
+                if (Regex.IsMatch(input, pattern)) //For checking regex are valid or invalid
                 {
-                    Console.WriteLine("The First name is : " + FirstName);
+                    Console.WriteLine("The First name is : " + input);
                     return "Input is valid";
                 }
                 else

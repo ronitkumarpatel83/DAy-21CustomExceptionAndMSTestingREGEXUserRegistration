@@ -24,7 +24,8 @@ namespace TestForValidation
             try
             {
                 //Act
-                string actual = validation.FirstNameValidation(firstName);
+                Validation first = new Validation(firstName);
+                string actual = first.FirstNameValidation();
                 //Assert
                 Assert.AreEqual(expected, actual);
             }
@@ -43,7 +44,7 @@ namespace TestForValidation
             try
             {
                 //Act
-                string actual = validation.FirstNameValidation(lastName);
+                string actual = validation.LastNameValidation(lastName);
                 //Assert
                 Assert.AreEqual(expected, actual);
             }
@@ -110,6 +111,107 @@ namespace TestForValidation
             catch (CustomException ex) // catch exception if input is not valid or null or empty
             {
                 Assert.AreEqual(expected, ex.Message);
+            }
+        }
+
+        UserRegistrationReflector userRegistrationReflector = new UserRegistrationReflector();
+        /// <summary>
+        /// Create a object of Validation class using reflection
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenClassNameShoulReturnObject()
+        {
+            object expected = new Validation();
+            object actual = userRegistrationReflector.CreateValidationObject("Day_21UserRegistrationUsingExceptionAndMSTesting.Validation", "Validation");
+            expected.Equals(actual);
+        }
+        /// <summary>
+        /// Given Class Name When Improper Should Throw InvalidException
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenInvalidClassThrowException()
+        {
+            try
+            {
+                object expected = new Validation();
+                object actual = userRegistrationReflector.CreateValidationObject("Day_21UserRegistrationUsingExceptionAndMSTesting.valid", "valid");
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Class not found", ex.Message);
+            }
+        }
+        /// <summary>
+        /// Given Validation Class Name Should Return Validation object with parameter
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenClassNameShoulReturnParameterizedObject()
+        {
+            string input = "Ronit";
+            object expected = new Validation(input);
+            object actual = userRegistrationReflector.CreateValidationParameterizedObject("Day_21UserRegistrationUsingExceptionAndMSTesting.Validation", "Validation", input);
+            expected.Equals(actual);
+        }
+
+        /// <summary>
+        /// Given Class Name When Improper Should Throw InvalidException
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenInvalidClassNameWithMessageThrowException()
+        {
+            try
+            {
+                string input = "Ronit";
+                object expected = new Validation(input);
+                object actual = userRegistrationReflector.CreateValidationParameterizedObject("Day_21UserRegistrationUsingExceptionAndMSTesting.valid", "valid", input);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Class not found", ex.Message);
+            }
+        }
+        /// <summary>
+        /// Given FirstName validation Using Reflection When Proper Should Return Input is valid invoking a method
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenMethodNameWithInputReturnsValidity()
+        {
+            string input = "Ronit";
+            string expected = "Input is valid";
+            string actual = "";
+            try
+            {
+                actual = userRegistrationReflector.InvokeMethod(input, "FirstNameValidation");
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Method not found", ex.Message);
+            }
+            Assert.AreEqual(expected, actual);
+        }
+        /// <summary>
+        /// Given Invalid method name should throw the exception
+        /// </summary>
+        [TestCategory("Reflection")]
+        [TestMethod]
+        public void GivenInvalidMethodNameWithInputThrowException()
+        {
+            string input = "Ronit";
+            string expected = "Input is valid";
+            string actual = "";
+            try
+            {
+                actual = userRegistrationReflector.InvokeMethod(input, "FirstName");
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Method not found", ex.Message);
             }
         }
     }

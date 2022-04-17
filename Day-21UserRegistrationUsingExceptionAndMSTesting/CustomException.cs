@@ -11,7 +11,11 @@ namespace Day_21UserRegistrationUsingExceptionAndMSTesting
     {
         public enum ExceptionValidation
         {
-            INVALID_INPUT
+            INVALID_INPUT,
+            NULL_INPUT,
+            CLASS_NOT_FOUND,
+            CONSTRUCTOR_NOT_FOUND,
+            METHOD_NOT_FOUND
         }
         public ExceptionValidation type;
         public CustomException(ExceptionValidation type, string message) : base(message)
